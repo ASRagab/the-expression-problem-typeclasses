@@ -1,14 +1,16 @@
-# Flux 
+# The Expression Problem and Scala Typeclasses 
 
-An application architecture for React
+
 
 ---
 
-### Flux Design
+### Philip Wadler
 
-- Dispatcher: Manages Data Flow
-- Stores: Handle State & Logic
-- Views: Render Data via React
+> The goal is
+> to define a datatype by cases, where one can add new cases to the
+> datatype and new functions over the datatype, without recompiling
+> existing code, and while retaining static type safety (e.g., no
+> casts).
 
 ---
 
