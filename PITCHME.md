@@ -28,6 +28,7 @@ Definition
 
 ---?code=code/src/main/java/interfaces/Algo.java&lang=java
 
+---
 ### Solution Criteria
 
 1. Recompilation (Repacking of Existing Code)
