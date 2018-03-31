@@ -1,12 +1,10 @@
 # The Expression Problem and Scala Typeclasses 
 
-
-
 ---
 
 ### Philip Wadler
 
-image of philip
+![Philip Wadler](https://c2.staticflickr.com/6/5672/21794046360_8dbb25e869_b.jpg)
 
 ---
 
@@ -20,6 +18,28 @@ Definition
 
 ---
 
+### Example Problem
+
+|           | Logistic Regressor | DecisionTree Regressor|   |   |
+|-----------|--------------------|-----------------------|---|---|
+| fit()      |                    |                       |   |   |
+| predict() |                    |                       |   |   |
+|           |                    |                       |   |   |
+
+---
+
+---?code=code/src/main/java/interfaces/Algo.java&lang=java
+
+---
+
+### Solution Criteria
+
+1. Recompilation (Repacking of Existing Code)
+2. Static Typesafety
+3. Minimal Duplication and Modification
+
+---
+
 ### Extensibility in Two Directions
 
 [Chart of extensibility]
@@ -30,6 +50,7 @@ Definition
 
 - Visitor Pattern - OOP
 - Open Classes/Monkey Patching - Ruby
+- Multimethods - Clojure
 
 ---
 
@@ -71,6 +92,12 @@ Definition
 
 ### More advanced solutions
 
--- Final Tagless (iOS Talk)
--- Interpreter Pattern and the Free Monad (Next time)
+- Final Tagless (iOS Talk)
+- Interpreter Pattern and the Free Monad (Next time)
+
+---
+
+### References and Additional Resources
+
+[Finally Solving the Expression Problem (Swift)](https://www.youtube.com/watch?v=EsanJ7_U89A)
 

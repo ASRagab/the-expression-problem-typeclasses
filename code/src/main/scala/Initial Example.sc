@@ -1,0 +1,3 @@
+trait MachineLearningAlgos {
+  def fit()
+}
