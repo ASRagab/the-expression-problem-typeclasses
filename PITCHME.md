@@ -26,11 +26,7 @@ Definition
 | predict() |                    |                       |   |   |
 |           |                    |                       |   |   |
 
----
-
 ---?code=code/src/main/java/interfaces/Algo.java&lang=java
-
----
 
 ### Solution Criteria
 
