@@ -3,7 +3,7 @@ package implementations;
 import interfaces.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class LinearRegression implements Algo {
+public class LinearRegressor implements Algo {
     @Override
     public void fit() {
         throw new NotImplementedException();
