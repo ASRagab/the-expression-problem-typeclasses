@@ -1,3 +1,5 @@
 stealth : stash
 highlight : dracula
 theme: moon
+theme-override: assets/css/PITCHME.css
+transition : fade
