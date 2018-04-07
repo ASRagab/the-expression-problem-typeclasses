@@ -1,4 +1,4 @@
-# The Expression Problem and Scala Typeclasses 
+# The Expression Problem and Scala Typeclasses
 
 ---
 
@@ -33,7 +33,6 @@ Definition
 ---
 
 ### Ship it!
-
 
 |  v0.0.1   | Logistic Regressor     | DecisionTree Regressor|   |   |
 |-----------|------------------------|-----------------------|---|---|
@@ -73,7 +72,7 @@ Definition
 | predict() | @fa[check fa-lime]    | @fa[check fa-lime]   |   @fa[check fa-lime]|   |
 | score()     |                        |                       |   |   |
 
---- 
+---
 
 ### Here Be
 
@@ -89,10 +88,11 @@ package interfaces;
 public interface Algo {
      void fit();
      void predict();
-     double score(); 
+     double score();
 }
 
 ```
+
 @[6](Requires a reopening of the interface, not always possible)
 @[8](Requires a reopening of each class and adding new behavior)
 
@@ -104,7 +104,7 @@ public interface Algo {
 |-----------|--------------------|--------------------|--------------------|
 | fit()      | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
 | predict() | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
-| score()   | @fa[exclamation-triangle fa-orange] | @fa[exclamation-triangle fa-orange]                       | @fa[exclamation-triangle fa-orange] | 
+| score()   | @fa[exclamation-triangle fa-orange] | @fa[exclamation-triangle fa-orange] | @fa[exclamation-triangle fa-orange] |
 
 In traditional OOP adding new behaviors is difficult
 
@@ -114,10 +114,10 @@ In traditional OOP adding new behaviors is difficult
 
 ```haskell
 
-data Algo = LogisticRegressor | DecisionTreeRegressor 
+data Algo = LogisticRegressor | DecisionTreeRegressor
             | KMeansRegressor
 
-fit :: Algo -> () 
+fit :: Algo -> ()
 fit LogisticRegressor = {...}
 fit DecisionTreeRegressor = {...}
 fit KMeansRegressor = {...}
@@ -131,6 +131,7 @@ score :: Algo -> ()
 ...
 
 ```
+
 ---
 
 ![Winning](./assets/winning.png)
@@ -143,7 +144,7 @@ score :: Algo -> ()
 |-----------|--------------------|--------------------|--------------------|
 | fit()      | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
 | predict() | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
-| score()   | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] | 
+| score()   | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
 
 ---
 
@@ -160,7 +161,7 @@ score :: Algo -> ()
 ### Reopening the Type
 
 ```haskell
-data Algo = LogisticRegressor | DecisionTreeRegressor 
+data Algo = LogisticRegressor | DecisionTreeRegressor
     | KMeansRegressor | ElasticNetRegressor
 
 fit :: Algo -> ()
@@ -176,6 +177,7 @@ score :: Algo -> ()
 score ElasticNetRegressor = {...}
 
 ```
+
 @[1,2,6,10,14](We now have to touch every implementation, also not always possible)
 
 ---
@@ -205,6 +207,7 @@ score ElasticNetRegressor = {...}
 ---
 
 ### Choose Your Fighter!
+
 - Visitor Pattern - Java
 - Open Classes/Monkey Patching - Ruby
 - Multimethods - Clojure
@@ -219,6 +222,7 @@ score ElasticNetRegressor = {...}
 ---
 
 ### The Visitor Pattern
+
 @fa[arrow-down fa-lime]
 +++
 
@@ -236,6 +240,7 @@ public interface Visitor<T> {
 }
 
 ```
+
 @[7-8](a visitor will need to visit every type of expression in the heirarchy)
 
 +++
@@ -249,10 +254,11 @@ public interface Visitable {
    /* The accept method on a visitable i.e. a type on the expression heirarchy, 
     is the secret sauce it allows an independent operation defined elsewhere 
     "access" to the type to perform the action */
-    <R> R accept(Visitor<R> v); 
+    <R> R accept(Visitor<R> v);
 
 
 ```
+
 @[7](Many Bracket, Such R!)
 
 +++
@@ -283,6 +289,7 @@ public class Literal implements Visitable {
 }
 
 ```
+
 @[17-21](Mostly POJO boilerplate sans the `accept` method, which takes `this` providing the visitor access to the object)
 
 +++
@@ -318,6 +325,7 @@ public class ShowVisitor implements Visitor<Void> {
 }
 
 ```
+
 @[8](Sorry for the `Void` type hackery)
 @[19, 21](Note the call to `accept`, which will allow the visitor to "recursively" visit sub-expressions)
 
@@ -346,6 +354,7 @@ public class RunVisitor {
 }
 
 ```
+
 @[15,16](Would probably wrap up in helper methods but yes, now you give a visitor of your choosing to the expression)
 
 +++?code=code/src/main/java/visitor/impl/expressions/BinaryMultiplication.java&lang=java&title="Adding a type, still pretty easy...."
@@ -385,10 +394,11 @@ class BinaryAddition < Struct.new(:lhs, :rhs)
 end
 
 ```
+
 @[1-13](Disclaimer: These are the first lines of Ruby I have ever written)
 +++
 
-### Adding Data 
+### Adding Data
 
 ```ruby
 class Negative <  Struct.new(:expression)
@@ -400,6 +410,7 @@ class Negative <  Struct.new(:expression)
 end
 
 ```
+
 @[1](Yup, not a problem...)
 +++
 
@@ -429,11 +440,12 @@ module ExpressionExtensions
 end
 
 ```
+
 @[4](This scoped monkeypatching with refinements is a safer version of the open class pattern, but potentially still brittle)
 
 +++
 
-### Consuming Code
+### Consuming Code (Ruby)
 
 ```ruby
 require_relative 'modules/expression_extensions'
@@ -458,17 +470,20 @@ end
 
 Run.new.go
 ```
+
 @[5](The only additional requirement is the use of a `using`)
 
 +++
 
 ### Pros
+
 - This is extremely extensible |
 - Minimal boilerplate |
 
 +++
 
 ### Cons
+
 - Easy, it seems, to abuse |
 - Leaky: methods already called at the definition site are not refined at the call site |
 
@@ -477,23 +492,28 @@ Run.new.go
 ---
 
 ### Clojure - Multimethods
+
 @fa[arrow-down fa-lime]
 +++
 
 ### Data
 
 Some LISPs have them but they are particularly well executed in Clojure
+
 ```clojure
-; Data 
+; Data
 (defrecord Literal [value])
 (defrecord BinaryAddition [lhs rhs])
 ```
+
 @[2](`defrecord` is a runtime macro to create a simple data class or value class, struct-like)
 
 +++
 
 ### Behavior
+
 Each implementation dispatches on the type and performs the operation (close to Haskell here)
+
 ```clojure
 ; Here 'class' refers to the built-in function clojure.core/class
 (defmulti show class)
@@ -508,6 +528,7 @@ Each implementation dispatches on the type and performs the operation (close to 
                                    (show (:rhs ba))]))
 ; are you feeling these parens yet!!!
 ```
+
 @[6, 9](if show exists I ~~sits~~ ...sorry "dispatch")
 +++
 
@@ -523,11 +544,13 @@ Each implementation dispatches on the type and performs the operation (close to 
   [ba] (+ (evaluate (:lhs ba))
           (evaluate (:rhs ba))))
 ```
+
 @[1](Can be defined anywhere types and behaviors are orthogonal to each other in Clojure)
 
 +++
 
 ### New Data
+
 ```clojure
 (defrecord Negative [value])
 
@@ -538,11 +561,12 @@ Each implementation dispatches on the type and performs the operation (close to 
 (defmethod evaluate Negative
  [n] (* -1 (evaluate (:value n))))
 ```
+
 @[1-8](We can add new ops without touching any existing code. We can also add new types without touching any existing code)
 
 +++
 
-### Consuming Code
+### Consuming Code (Clojure)
 
 ```clojure
 ; on the repl
@@ -558,6 +582,7 @@ user=> (evaluate (->Negative (->Literal 5)))
 user=> (show (->Negative (->BinaryAddition (->Literal 10) (->Literal 10))))
 "-(10 + 10)"
 ```
+
 @[2](The "->" is the `defrecord` parameter constructor syntax/there is a map syntax too!)
 
 +++
@@ -573,6 +598,7 @@ This is easy in Clojure and other LISPs that have multimethods because of _open 
 ### Basic Scala Machinery
 
 - Implicits
+
 <br>
 @fa[arrow-down fa-lime]
 
@@ -583,7 +609,7 @@ This is easy in Clojure and other LISPs that have multimethods because of _open 
 - Line 187 of the Predef Object, a helpful comment!
 
 ```scala
-  @inline def implicitly[T](implicit e: T) = e // for summoning implicit values from the nether world 
+  @inline def implicitly[T](implicit e: T) = e // for summoning implicit values from the nether world
 ```
 
 +++
@@ -634,12 +660,22 @@ object App {
 
 - Two very closely related features *implicit parameters* and *implicit conversions*
 - Both invoke machinery to resolve type errors discovered by attempting to find supplemental info in scope
-- Implicit params, when a method fails to have all the required arguments passed will be searched for
-- Implicit conversions, when a type fails to have the right shape or doesn't match the expected type
 
 +++
 
-### 25 phases of the compiler...
+### Implicit Parameters
+
+- When a method fails to have all the required arguments passed will be searched for
+
++++
+
+### Implicit Conversions
+
+- When a type fails to have the right shape or doesn't match the expected type
+
++++
+
+### Enter the 25 Compiler Phases
 
 - One phase of the compiler "the namer" assigns symbols to the parsed syntax tree created in the previous phase called "the parser" |
 - "the typer" (where like most of the heavy lifting happens) checks to see if those symbols "type checks" |
@@ -647,14 +683,14 @@ object App {
 
 +++
 
-### Lots of wrong ways to use them...
+### Implicits are...subtle
 
 - The implicit needs to be brought into scope __only once__ |
 - The tradeoff is that there must be __exactly__ one implicit of the right type into that scope |
 
 +++
 
-### What is a typeclass? It's a design pattern...
+### What is a typeclass? It's a design pattern.
 
 - A pattern that consists of the use of one or more parameterized traits, concrete instances of that trait and the appropriate implicits
 
@@ -665,6 +701,7 @@ object App {
 +++
 
 ### Data
+
 ```scala
 trait Exp
 case class Literal(value: Int) extends Exp
@@ -682,8 +719,8 @@ trait Eval[A] {
     }
 
 object Evaluator {
-// Typeclasses instances 
-  implicit def LiteralEval = 
+// Typeclasses instances
+  implicit def LiteralEval =
       new Eval[Literal] {
           override def eval(a: Literal) = a.value
           }
@@ -694,23 +731,25 @@ object Evaluator {
           }
 }
 ```
+
 @[8, 13](Lift each datatype you would like to exhibit a particular behavior into typeclass context)
 @[13](We need a second level implicit to find evidence that A and B can be 'evaled')
 
 +++
 
-### Consuming Code
+### Consuming Code (Scala)
 
-```scala 
+```scala
 import Evaluator._ //bring implicits into scope
 val l1 = Literal(5)
-val l2 = Literal(10) 
+val l2 = Literal(10)
 val add = BinaryAddition(l1, l2)
 
 LiteralEval.eval(l1) // okay
 BinaryAdditionEval[Literal, Literal].eval(add) // eh....not great!
 ```
-@[7](Call site is a little busy...we'll fix that in a minute)
+
+@[7](The call site is a little busy...we'll fix that shortly)
 
 +++
 
@@ -750,7 +789,7 @@ object Shower {
           "(" + evA.show(a.left) + " + " + evB.show(a.right) + ")"
       }
 
-implicit def NegativeShower[A <: Exp](implicit ev: Show[A]) =
+  implicit def NegativeShower[A <: Exp](implicit ev: Show[A]) =
       new Show[Negative[A]] {
         override def show(a: Negative[A]) = "-" + "(" + ev.show(a.expr) + ")"
       }
@@ -768,9 +807,9 @@ NegativeShower[BinaryAddition[Literal, Literal]].show(neg)
 ```scala
 object LowerPriorityImplicits {
     //Enriching the Literal type with new 'syntax'
-    implicit class LiteralSyntax(lit: Literal) { 
-      //def a method which performs the behavior 
-      def evaluate(implicit ev: Eval[Literal]) = { 
+    implicit class LiteralSyntax(lit: Literal) {
+      //def a method which performs the behavior
+      def evaluate(implicit ev: Eval[Literal]) = {
         ev.eval(lit)
       }
 
@@ -801,23 +840,24 @@ object LowerPriorityImplicits {
   }
 ```
 
-+++ 
++++
 
 ### Much cleaner syntax
 
 ```scala
 import LowerPriorityImplicits._ //bring into scope
-l1.evaluate 
+l1.evaluate
 add.evaluate
 
 add.show
 neg.show
 ```
+
 @[2, 5](Syntax classes, implicitly "enriching" the type allow us to simply dot off the object)
 
 ---
 
-### More advanced solutions 
+### More advanced solutions
 
 - Final Tagless |
 - Object Algebras (Partially working impl in repo) |
@@ -830,7 +870,9 @@ neg.show
 - [Finally Solving the Expression Problem (YouTube)](https://www.youtube.com/watch?v=EsanJ7_U89A)
 - [The Expression Problem in Ruby](https://mike-burns.com/project/expression-problem-ruby/expression-problem-ruby-riga.pdf)
 - [The Expression Problem and its Solutions](https://eli.thegreenplace.net/2016/the-expression-problem-and-its-solutions)
-- [Independently Extensible Solutions to the Expression Problem](https://infoscience.epfl.ch/record/52625/files/IC_TECH_REPORT_200433.pdf)
+- [Independently Extensible Solutions to the Expression Problem (Whitepaper)](https://infoscience.epfl.ch/record/52625/files/IC_TECH_REPORT_200433.pdf)
+- [Extensibility for the Masses (Whitepaper)](http://www.cs.utexas.edu/~wcook/Drafts/2012/ecoop2012.pdf)
 - [Implicit Class: The Machinery Behind the Semantics (YouTube)](https://www.youtube.com/watch?v=dNyoPOyhYpg)
 - [Implicits and Type Classes in Scala](https://www.theguardian.com/info/developer-blog/2016/dec/22/parental-advisory-implicit-content)
 - [Type Classes in Scala at LX Scala (YouTube)](https://www.youtube.com/watch?v=A5t6WagltAc)
+- [Typeclass Traits Proposal (Martin Odersky)](https://github.com/lampepfl/dotty/pull/4153)
