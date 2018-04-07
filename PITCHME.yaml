@@ -1,5 +1,5 @@
 stealth : stash
-highlight : dracula
-theme: moon
+highlight : pojoaque
+theme: night
 theme-override: assets/css/PITCHME.css
 transition : fade

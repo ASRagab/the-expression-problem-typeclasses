@@ -20,11 +20,11 @@ Definition
 
 ### Example Problem
 
-|           | Logistic Regressor | DecisionTree Regressor|   |   |
-|-----------|--------------------|-----------------------|---|---|
-| fit()      |                    |                       |   |   |
-| predict() |                    |                       |   |   |
-|           |                    |                       |   |   |
+|           | Logistic Regressor | DecisionTree Regressor|
+|-----------|--------------------|-----------------------|
+| fit()     |                    |                       |
+| predict() |                    |                       |
+|           |                    |                       |
 
 ---?code=code/src/main/java/interfaces/Algo.java&lang=java&title="The Interface"
 ---?code=code/src/main/java/implementations/DecisionTreeRegressor.java&lang=java&title="The Implementation"
@@ -34,21 +34,21 @@ Definition
 
 ### Ship it!
 
-|  v0.0.1   | Logistic Regressor     | DecisionTree Regressor|   |   |
-|-----------|------------------------|-----------------------|---|---|
-| fit()      | @fa[check fa-lime]    | @fa[check fa-lime]   |   |   |
-| predict() | @fa[check fa-lime]    | @fa[check fa-lime]   |   |   |
-|           |                        |                       |   |   |
+|  v0.0.1   | Logistic Regressor    | DecisionTree Regressor|
+|-----------|-----------------------|-----------------------|
+| fit()     | @fa[check fa-lime]    | @fa[check fa-lime]    |
+| predict() | @fa[check fa-lime]    | @fa[check fa-lime]    |
+|           |                       |                       |
 
 ---
 
 ### v0.0.2 ...K-Means Clustering
 
-|  v0.0.2   | Logistic Regressor     | DecisionTree Regressor|  KMeansRegressor |   |
-|-----------|------------------------|-----------------------|---|---|
-| fit()      | @fa[check fa-lime]    | @fa[check fa-lime]   |   |   |
-| predict() | @fa[check fa-lime]    | @fa[check fa-lime]   |   |   |
-|           |                        |                       |   |   |
+|  v0.0.2   | Logistic Regressor    | DecisionTree Regressor|  KMeansRegressor |
+|-----------|-----------------------|-----------------------|------------------|
+| fit()      | @fa[check fa-lime]   | @fa[check fa-lime]    |                  |
+| predict() | @fa[check fa-lime]    | @fa[check fa-lime]    |                  |
+|           |                       |                       |                  |
 
 ---?code=code/src/main/java/implementations/KMeansRegressor.java&lang=java&title="Add Another Implementation FTW!"
 
@@ -56,21 +56,21 @@ Definition
 
 ### So much winning!
 
-|  v0.0.2   | Logistic Regressor     | DecisionTree Regressor|  KMeansRegressor |   |
-|-----------|------------------------|-----------------------|---|---|
-| fit()      | @fa[check fa-lime]    | @fa[check fa-lime]   |   @fa[check fa-lime] |   |
-| predict() | @fa[check fa-lime]    | @fa[check fa-lime]   |   @fa[check fa-lime]|   |
-|           |                        |                       |   |   |
+|  v0.0.2   | Logistic Regressor    | DecisionTree Regressor|  KMeansRegressor |
+|-----------|-----------------------|-----------------------|------------------|
+| fit()     | @fa[check fa-lime]    | @fa[check fa-lime]    |@fa[check fa-lime]|
+| predict() | @fa[check fa-lime]    | @fa[check fa-lime]    |@fa[check fa-lime]|
+|           |                       |                       |                  |
 
 ---
 
 ### v0.0.3 ...Add Score (Mean Accuracy)
 
-|  v0.0.3   | Logistic Regressor     | DecisionTree Regressor|  KMeansRegressor |   |
-|-----------|------------------------|-----------------------|---|---|
-| fit()      | @fa[check fa-lime]    | @fa[check fa-lime]   |   @fa[check fa-lime] |   |
-| predict() | @fa[check fa-lime]    | @fa[check fa-lime]   |   @fa[check fa-lime]|   |
-| score()     |                        |                       |   |   |
+|  v0.0.3   | Logistic Regressor    | DecisionTree Regressor|  KMeansRegressor |
+|-----------|-----------------------|-----------------------|------------------|
+| fit()     | @fa[check fa-lime]    | @fa[check fa-lime]    |@fa[check fa-lime]|
+| predict() | @fa[check fa-lime]    | @fa[check fa-lime]    |@fa[check fa-lime]|
+| score()   |                       |                       |                  |
 
 ---
 
@@ -101,9 +101,9 @@ public interface Algo {
 ### Pull the Chord!
 
 |  v0.0.3   | Logistic Regressor  | Decision Tree Regressor|  KMeans Regressor |
-|-----------|--------------------|--------------------|--------------------|
-| fit()      | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
-| predict() | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
+|-----------|--------------------|--------------------|------------------------|
+| fit()     | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime]     |
+| predict() | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime]     |
 | score()   | @fa[exclamation-triangle fa-orange] | @fa[exclamation-triangle fa-orange] | @fa[exclamation-triangle fa-orange] |
 
 In traditional OOP adding new behaviors is difficult
@@ -140,21 +140,21 @@ score :: Algo -> ()
 
 ### All Green
 
-|  v0.0.3   | Logistic Regressor | Decision Tree Regressor | KMeansRegressor |
-|-----------|--------------------|--------------------|--------------------|
-| fit()      | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
-| predict() | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
-| score()   | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] |
+|  v0.0.3   | Logistic Regressor | Decision Tree Regressor | KMeansRegressor    |
+|-----------|--------------------|-------------------------|--------------------|
+| fit()     | @fa[check fa-lime] | @fa[check fa-lime]      | @fa[check fa-lime] |
+| predict() | @fa[check fa-lime] | @fa[check fa-lime]      | @fa[check fa-lime] |
+| score()   | @fa[check fa-lime] | @fa[check fa-lime]      | @fa[check fa-lime] |
 
 ---
 
-### v0.0.4 and Inexpressivity of the Second Kind 
+### v0.0.4 and Inexpressivity of the Second Kind
 
-| v0.0.4 | Logistic Regressor | Decision Tree Regressor | KMeans Regressor | ElasticNet Regressor |
-|-----------|--------------------|--------------------|---------------------|--------------------|
-| fit()      | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] | |
-| predict() | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] | |
-| score()   | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime] | |
+| v0.0.4    | Logistic Regressor | Decision Tree Regressor | KMeans Regressor   | ElasticNet Regressor |
+|---------- |--------------------|-------------------------|--------------------|----------------------|
+| fit()     | @fa[check fa-lime] | @fa[check fa-lime]      | @fa[check fa-lime] |                      |
+| predict() | @fa[check fa-lime] | @fa[check fa-lime]      | @fa[check fa-lime] |                      |
+| score()   | @fa[check fa-lime] | @fa[check fa-lime]      | @fa[check fa-lime] |                      |
 
 ---
 
@@ -732,7 +732,7 @@ object Evaluator {
 }
 ```
 
-@[8, 13](Lift each datatype you would like to exhibit a particular behavior into typeclass context)
+@[8, 13](Lift each datatype you would like to exhibit a particular behavior into the typeclass context)
 @[13](We need a second level implicit to find evidence that A and B can be 'evaled')
 
 +++
@@ -876,3 +876,9 @@ neg.show
 - [Implicits and Type Classes in Scala](https://www.theguardian.com/info/developer-blog/2016/dec/22/parental-advisory-implicit-content)
 - [Type Classes in Scala at LX Scala (YouTube)](https://www.youtube.com/watch?v=A5t6WagltAc)
 - [Typeclass Traits Proposal (Martin Odersky)](https://github.com/lampepfl/dotty/pull/4153)
+
+---
+
+## Fin
+
+Express Yourself!
