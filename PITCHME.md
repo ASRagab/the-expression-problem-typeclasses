@@ -599,7 +599,8 @@ object App {
      //explicitly using java.lang.Integer
   }
 
-  implicit class ResultOps(r: Result) { // Type "enrichment" or Politically Incorrectly "Pimping"
+  implicit class ResultOps(r: Result) { 
+    // Type "enrichment" or in a less woke time "Pimping"
     def getOpt: Option[Integer] = Option(r.get)
   }
 
@@ -640,8 +641,8 @@ object App {
 
 ### 25 phases of the compiler...
 
-- One phase of the compiler __the namer__ assigns symbols to the parsed syntax tree created in the previous phase called __the parser__ |
-- __the typer__ (where like most of the heavy lifting happens) checks to see if those symbols "type checks" |
+- One phase of the compiler "the namer" assigns symbols to the parsed syntax tree created in the previous phase called "the parser" |
+- "the typer" (where like most of the heavy lifting happens) checks to see if those symbols "type checks" |
 - This is where implicits are summoned and wrap the symbol or type in a way that it allows it to typecheck |
 
 +++
@@ -693,8 +694,8 @@ object Evaluator {
           }
 }
 ```
-@[8, 12](Lift each datatype you would like to exhibit a particular behavior into typeclass context)
-@[12](We need a second level implicit to find evidence that A and B can be 'evaled')
+@[8, 13](Lift each datatype you would like to exhibit a particular behavior into typeclass context)
+@[13](We need a second level implicit to find evidence that A and B can be 'evaled')
 
 +++
 
@@ -735,7 +736,7 @@ NegativeEval[BinaryAddition[Literal, Literal]].eval(neg) // this is getting out 
 
 ```scala
 trait Show[A] {
-def show(a: A): String
+  def show(a: A): String
 }
 
 object Shower {
