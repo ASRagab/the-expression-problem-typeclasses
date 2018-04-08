@@ -1,4 +1,4 @@
-# The Expression Problem and Scala Typeclasses
+# [The Expression Problem and Scala Typeclasses](https://github.com/ASRagab/the-expression-problem-typeclasses)
 
 ---
 
@@ -518,9 +518,9 @@ Each implementation dispatches on the type and performs the operation (close to 
 ; Here 'class' refers to the built-in function clojure.core/class
 (defmulti show class)
 
-; the macro has the name "method" that should tip you off about 
+; the macro has the name "method" that should tip you off about
 ; what this is when the jvm gets involved
-(defmethod show Literal 
+(defmethod show Literal
   [lit] (str (:value lit)))
 
 (defmethod show BinaryAddition
@@ -665,7 +665,7 @@ object App {
 
 ### Implicit Parameters
 
-- When a method fails to have all the required arguments passed will be searched for
+- When a method fails to have all the required arguments passed to it
 
 +++
 
@@ -685,7 +685,7 @@ object App {
 
 ### Implicits are...subtle
 
-- The implicit needs to be brought into scope __only once__ |
+- An implicit needs to be brought into scope __only once__ |
 - The tradeoff is that there must be __exactly__ one implicit of the right type into that scope |
 
 +++
@@ -846,11 +846,11 @@ object LowerPriorityImplicits {
 
 ```scala
 import LowerPriorityImplicits._ //bring into scope
-l1.evaluate
-add.evaluate
+l1.evaluate // LiteralEval.eval(l1)
+add.evaluate // BinaryAddition[Literal, Literal].eval(neg)
 
-add.show
-neg.show
+add.show // BinaryAdditionShower[BinaryAddition[Literal, Literal]].show(add)
+neg.show // NegativeShower[BinaryAddition[Literal, Literal]].show(neg)
 ```
 
 @[2, 5](Syntax classes, implicitly "enriching" the type allow us to simply dot off the object)
