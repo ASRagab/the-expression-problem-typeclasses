@@ -423,19 +423,19 @@ require_relative '../Literal'
 module ExpressionExtensions
   refine Literal do
     def evaluate
-        value
+      value
     end
   end
 
   refine BinaryExpression do
     def evaluate
-        Literal.new(lhs.evaluate + rhs.evaluate)
+      lhs.evaluate + rhs.evaluate
     end
   end
 
   refine Negative do
     def evaluate
-        Literal.new(-expression.evaluate)
+      -expression.evaluate
     end
 end
 
@@ -464,7 +464,7 @@ class Run
     b = BinaryExpression.new(l, r)
     b.show
     print ' = '
-    b.evaluate.show
+    b.evaluate
   end
 end
 
