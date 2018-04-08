@@ -549,17 +549,17 @@ Each implementation dispatches on the type and performs the operation (close to 
 
 +++
 
-### New Data
+### New Data and its Behaviors
 
 ```clojure
-(defrecord Negative [value])
+(defrecord Negative [expr])
 
 ; Behavior for Data, we do not need to redefine `defmulti`
-(defmethod show Negative 
- [n] (str "-(" (show (:value n)) ")")
+(defmethod show Negative
+ [n] (str "-(" (show (:expr n)) ")")
 
 (defmethod evaluate Negative
- [n] (* -1 (evaluate (:value n))))
+ [n] (* -1 (evaluate (:expr n))))
 ```
 
 @[1-8](We can add new ops without touching any existing code. We can also add new types without touching any existing code)
