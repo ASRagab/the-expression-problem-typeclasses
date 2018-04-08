@@ -106,7 +106,7 @@ public interface Algo {
 | predict() | @fa[check fa-lime] | @fa[check fa-lime] | @fa[check fa-lime]     |
 | score()   | @fa[exclamation-triangle fa-orange] | @fa[exclamation-triangle fa-orange] | @fa[exclamation-triangle fa-orange] |
 
-In traditional OOP adding new behaviors is difficult
+In traditional *inheritance based* OOP adding new behaviors is difficult
 
 ---
 
@@ -194,7 +194,7 @@ score ElasticNetRegressor = {...}
 
 ### Extensibility in Two Directions
 
-![Chart of extensibility](https://cdn.rawgit.com/ASRagab/ff3212532e5418b79fdda07b719024f3/raw/f106d57050134e200af11957a20e36ad7a633636/chart.svg)
+![Chart of extensibility](https://rawgit.com/ASRagab/ff3212532e5418b79fdda07b719024f3/raw/a3214c93de1c686406e6c0569c1986d22b6d4828/chart.svg)
 
 ---
 
