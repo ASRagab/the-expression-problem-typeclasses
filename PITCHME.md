@@ -859,7 +859,7 @@ neg.show // NegativeShower[BinaryAddition[Literal, Literal]].show(neg)
 
 ### More advanced solutions
 
-- Final Tagless |
+- Tagless Final |
 - Object Algebras (Partially working impl in repo) |
 - Interpreter Pattern and the Free Monad |
 
