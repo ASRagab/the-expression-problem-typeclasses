@@ -800,6 +800,8 @@ LiteralShower.show(l1)
 NegativeShower[BinaryAddition[Literal, Literal]].show(neg)
 ```
 
+@[24](Let's fix this now...)
+
 +++
 
 ### Implicits to the rescue again
