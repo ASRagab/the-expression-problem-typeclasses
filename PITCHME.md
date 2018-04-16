@@ -127,7 +127,7 @@ predict LogisticRegressor = {...}
 predict DecisionTreeRegressor = {...}
 predict KMeansRegressor = {...}
 
-score :: Algo -> ()
+score :: Algo -> Double
 ...
 
 ```
