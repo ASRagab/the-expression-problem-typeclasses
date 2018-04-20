@@ -241,7 +241,7 @@ public interface Visitor<T> {
 
 ```
 
-@[7-8](a visitor will need to visit every type of expression in the heirarchy)
+@[7-8](a visitor will need to visit every type of expression in the hierarchy)
 
 +++
 
