@@ -201,7 +201,7 @@ score ElasticNetRegressor = {...}
 ### Solution Criteria
 
 - Minimize Recompilation of Existing Code |
-- ~~Static~~ Typesafety - Avoid Casting |
+- <s>Static</s> Typesafety - Avoid Casting |
 - Avoid Duplication and Modification |
 
 ---
